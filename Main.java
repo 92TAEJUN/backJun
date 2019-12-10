@@ -1,25 +1,21 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.OutputStreamWriter;
-import java.io.StringBufferInputStream;
 import java.io.InputStreamReader;
 
 public class Main {
 	public static void main(String[] args) {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		int result = 0;
+		int[] alphabet = {3,3,3,4,4,4,5,5,5,6,6,6,7,7,7,8,8,8,8,9,9,9,10,10,10,10};
 		try {
-			String[] str = br.readLine().split(" ");
-			for (int i=0; i <=1; i++) {
-				char[] reverse = str[i].toCharArray();
-				for (int j=0; j < 1; j++) {
-					char temp = reverse[j];
-					reverse[j] = reverse[reverse.length-1];
-					reverse[reverse.length-1] = temp;
-					str[i] = String.valueOf(reverse);
-				}
+			char[] inValue = br.readLine().toCharArray();
+			for (char ch : inValue) {
+				result += alphabet[ch-'A'];
 			}
-			bw.append(Integer.parseInt(str[0]) < Integer.parseInt(str[1]) ? str[1] : str[0]);
+			bw.write(String.valueOf(result));
+			bw.flush();
 			bw.close();
 		} catch (Exception e) {}
 	}
