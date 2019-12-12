@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 /* 
 문제
 그룹 단어란 단어에 존재하는 모든 문자에 대해서, 각 문자가 연속해서 나타나는 경우만을 말한다. 예를 들면, ccazzzzbb는 c, a, z, b가 모두 연속해서 나타나고, kin도 k, i, n이 연속해서 나타나기 때문에 그룹 단어이지만, aabbbccb는 b가 떨어져서 나타나기 때문에 그룹 단어가 아니다.
@@ -16,21 +17,19 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		int inCount = sc.nextInt();
 		int outCount = 0;
-		for (int i=0; i < inCount; i++) {
+		for (int i = 0; i < inCount; i++) {
 			boolean[] alphabet = new boolean[26];
 			char[] inValue = sc.next().toCharArray();
-			if (inValue.length==1) {
-				outCount++;
-			}
-			for (int j=0; j < inValue.length-1; j++) {
-				if (inValue[j] != inValue[j+1]) {
-					if (alphabet[inValue[j+1] - 'a'] == true) {
+			for (int j = 0; j <= inValue.length - 1; j++) {
+				if (j == inValue.length - 1) {
+					outCount++;
+					continue;
+				}
+				if (inValue[j] != inValue[j + 1]) {
+					if (alphabet[inValue[j + 1] - 'a'] == true) {
 						break;
 					}
 					alphabet[inValue[j] - 'a'] = true;
-				}
-				if (j==inValue.length-2) {
-					outCount++;
 				}
 			}
 		}
