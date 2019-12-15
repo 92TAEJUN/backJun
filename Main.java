@@ -1,41 +1,25 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.StringTokenizer;
 
-/*
-문제
-무한히 큰 배열에 다음과 같이 분수들이 적혀있다.
-
-1/1	1/2	1/3	1/4	1/5	…
-2/1	2/2	2/3	2/4	…	…
-3/1	3/2	3/3	…	…	…
-4/1	4/2	…	…	…	…
-5/1	…	…	…	…	…
-…	…	…	…	…	…
-이와 같이 나열된 분수들을 1/1 -> 1/2 -> 2/1 -> 3/1 -> 2/2 -> … 과 같은 지그재그 순서로 차례대로 1번, 2번, 3번, 4번, 5번, … 분수라고 하자.
-
-X가 주어졌을 때, X번째 분수를 구하는 프로그램을 작성하시오.
-
-입력
-첫째 줄에 X(1 ≤ X ≤ 10,000,000)가 주어진다.
-
-출력
-첫째 줄에 분수를 출력한다.
-*/
 public class Main {
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int point = sc.nextInt();
-		int valueLine =0;
-		int x =0;
-		int y =0;
-		while (valueLine < point) {
-			point -= valueLine;
-			if (point > 0) {
-				valueLine++;
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		try {
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			double a = st.nextToken();
+			double b = st.nextToken();
+			double v = st.nextToken();
+			if (a==v) {
+				bw.write("1");
+			} else {
+				bw.write(String.valueOf((int)Math.ceil((v-a)/(a-b)) + 1));			
 			}
+			bw.close();
+		} catch (Exception e) {
 		}
-		x = point;
-		y = valueLine - x + 1;
-		boolean desc = (valueLine % 2 == 0 ? true : false);
-		System.out.println(desc ? x + "/" + y : y + "/" + x);
 	}
 }
